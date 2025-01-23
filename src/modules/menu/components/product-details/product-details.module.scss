@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  padding:2rem;
+  padding: 2rem;
 
   .secondLayer {
     position: absolute;
@@ -56,14 +56,14 @@
     max-width: 1140px;
     border: 1px solid white;
 
-    .topLeftImage {
+    .topLeftImage img {
       width: 180px;
       height: 260px;
       position: absolute;
       top: 0;
       left: 0;
     }
-    .bottomRightImage {
+    .bottomRightImage img{
       width: 180px;
       height: 260px;
       position: absolute;
@@ -118,15 +118,49 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
 
     .name {
-      width: 100%;
+      flex-grow: 1; // Allow the name to grow and fill available space
+      overflow: hidden; // Hide any overflow
+      white-space: nowrap; // Prevent line breaks
+      position: relative; // Required for pseudo-element positioning
+      width: 300px;
+      // Ellipsis for truncation
+      &::after {
+        content: "..."; // Show ellipsis when truncated
+        position: absolute;
+        right: 0; // Position ellipsis at the end of the name
+        background-color: white; // Match background color to hide overflow
+        padding-left: 5px; // Space between text and ellipsis
+        display: none; // Initially hide ellipsis
+      }
+      & > span {
+        display: inline-block; // Ensure proper spacing for inner span
+        max-width: calc(100% - 20px); // Adjust based on desired spacing
+        overflow: hidden; // Hide overflow text
+        text-overflow: ellipsis; // Apply ellipsis for overflowing text
+        white-space: nowrap; // Prevent line breaks
+      }
     }
+    .dots {
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100%;
+      color: white; // Make dots transparent
+      background-repeat: no-repeat;
+      pointer-events: none; // Allow clicks to pass through
+    }
+
     .price {
       font-family: "Oswald", sans-serif;
       text-transform: uppercase;
       font-weight: 400;
       font-size: 26px;
+      white-space: nowrap; // Prevent line breaks for price
+      margin-left: 10px; // Optional spacing between name and price
     }
   }
 
@@ -138,5 +172,73 @@
     font-weight: 300;
     font-family: "Kelly Slab", sans-serif;
     color: #bbbbbb;
+  }
+}
+
+@media (max-width: 1024px) {
+  .detailsContainer {
+    .itemsGrid {
+      display: flex;
+
+      flex-direction: column;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .detailsContainer {
+    padding: 1rem;
+    min-height: 400px;
+
+    .categoryTitle {
+      font-size: 30px;
+      gap: 14px;
+    }
+   
+
+    .itemsGrid {
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+    }
+    .container {
+      width: 100%;
+      padding-top: 36px;
+      padding-bottom: 53px;
+      max-width: 1250px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .productDetailsDiv {
+      width: 100%;
+      padding: 30px 10px;
+
+      .topLeftImage img{
+        width: 80px;
+        height: 120px;
+        position: absolute;
+        top: 20px;
+        left: 0;
+
+      }
+      .bottomRightImage img{
+        width: 80px;
+        height: 120px;
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+      }
+    }
+
+    .itemContainer .productName , .price{
+      font-size: 16px;
+    }
+
+    .itemContainer p {
+      font-size: 14px;
+    }
+    
+    
   }
 }

@@ -21,17 +21,23 @@ const ActionBar: React.FC = () => {
           <ButtonComponent
             text="FOOD"
             onClick={() => handleButtonClick("Food")}
-            className={styles.button}
+            className={`${styles.button} ${
+              selectedCategory === "Food" ? styles.active : ""
+            }`}
           />
           <ButtonComponent
             text="DRINKS"
             onClick={() => handleButtonClick("Drinks")}
-            className={styles.button}
+            className={`${styles.button} ${
+              selectedCategory === "Drinks" ? styles.active : ""
+            }`}
           />
           <ButtonComponent
             text="BRUNCH"
             onClick={() => handleButtonClick("Brunch")}
-            className={styles.button}
+            className={`${styles.button} ${
+              selectedCategory === "Brunch" ? styles.active : ""
+            }`}
           />
         </div>
       </div>

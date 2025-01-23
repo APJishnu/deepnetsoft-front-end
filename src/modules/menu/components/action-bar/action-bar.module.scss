@@ -1,33 +1,49 @@
 .actionBar {
-    background-image: url('/action-bar/action-bar-bg.svg'); // Add your background image here
-    background-size: cover;
-    background-position: center;
-    height: 79px; // Adjust height as needed
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .buttonContainer {
-    display: flex;
-    gap: 1rem; // Space between the buttons
-  }
+  background-image: url("/action-bar/action-bar-bg.svg"); // Add your background image here
+  background-size: cover;
+  background-position: center;
+  height: 79px; // Adjust height as needed
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .button{
-    width: 114px;
-    height: 49px;
-    border-radius: 0px!important;
-    border: 0.5px solid #0796EF;
-    color: #FFFFFF;
-    background-color:#000000;
-    font-family: 'Oswald', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+.buttonContainer {
+  display: flex;
+  gap: 1rem; // Space between the buttons
+}
 
-    &:hover{
-        background-color: #0796EF!important;
-        color: #FFFFFF!important;
+.button {
+  width: 114px;
+  height: 49px;
+  border-radius: 0px !important;
+  border: 0.5px solid #0796ef;
+  color: #ffffff;
+  background-color: #000000;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; // Smooth transition
+
+  &:hover {
+    background-color: #0796ef !important;
+    color: #ffffff !important;
+  }
+}
+
+.active {
+  background-color: #0796ef !important; // Same as hover background
+  color: #ffffff !important; // Same as hover text color
+  border: 1px solid #0796ef; // Optional: Highlight the active button
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+}
+
+@media (max-width: 468px) {
+  .actionBar {
+    .button {
+      width: 72px;
+      height: 31px;
+      font-size: 12px;
     }
   }
-  
-  
+}

@@ -110,7 +110,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
             {products.map((item, index) => (
               <div key={index} className={`${styles.itemContainer}`}>
                 <div className={styles.productName}>
-                  <span className={styles.name}>{item.name}</span>
+                  <span className={styles.name}><span className={styles.spanName}>{item.name}</span><span className={styles.dots}>........................................................................................................................................................................</span></span>
+                  
                   <span className={styles.price}>${item.price}</span>
                 </div>
 
