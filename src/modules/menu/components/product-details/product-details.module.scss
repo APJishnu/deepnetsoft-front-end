@@ -39,6 +39,11 @@
       background-position: right;
     }
   }
+  .skelotonContainer{
+    padding-top: 62px;
+    max-width: 1140px;
+  }
+  
 
   .container {
     width: 100%;
@@ -199,6 +204,9 @@
       display: flex;
       gap: 0.5rem;
       flex-direction: column;
+    }
+    .skelotonContainer{
+      padding-top: 12px;
     }
     .container {
       width: 100%;
