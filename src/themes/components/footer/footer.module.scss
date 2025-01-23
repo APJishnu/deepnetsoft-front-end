@@ -1,0 +1,167 @@
+// Footer.module.scss
+.footer {
+  background-color: black;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 59px;
+  padding-bottom: 53px;
+
+  .footerLayout {
+    width: 100%;
+    max-width: 1140px;
+    display: flex;
+    gap: 15px;
+
+    .iconFooterContainer {
+      padding-top: 37px;
+      position: relative;
+      .footerContainer {
+        border: 1px solid #ffffff;
+        border-radius: 15px;
+        width: 373px;
+        height: 134px;
+        
+        .logoIcon {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .logoIcon span {
+          background-color: black;
+        }
+      }
+    }
+  }
+
+
+ 
+    .contactInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      height: 100%;
+
+      .connectWithUs{
+        text-transform: uppercase;
+        font-family: 'Oswald', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #0796EF;
+        
+      }
+
+      a {
+        color: #857878;
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:10px;
+        letter-spacing: 1px;
+      }
+    }
+
+
+  .logoText {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Oswald', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+    gap: 10px;
+    line-height: 40px;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+
+    .logoText1{
+        color: #0796EF;
+        .logoText2{
+            color: #FFFFFF;
+        }
+        .logoText3{
+            color: #857878;
+        }
+    }
+    .socialIcons{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+  }
+
+  .locationInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+    .findUs{
+        text-transform: uppercase;
+        font-family: 'Oswald', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #0796EF;
+        
+      }
+
+      a {
+        color: #857878;
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:10px;
+        max-width: 200px;
+        letter-spacing: 1px;
+      }
+    }
+
+
+
+   
+}
+
+.copyRightDiv{
+    width: 100%;
+    background-color: #161616;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    
+    .copyRightContent{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%_;
+        height: 100%;
+        max-width: 1140px;
+    
+        a{
+            color: #857878;
+        }
+    
+        .termsAndPolicy{
+            color: #857878;
+    
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+}
