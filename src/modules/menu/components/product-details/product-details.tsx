@@ -58,8 +58,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   };
 
   useEffect(() => {
+    // Reset the page to 1 when the category changes
+    setCurrentPage(1);
+  }, [category]);
+
+  useEffect(() => {
     fetchProducts(currentPage, pageSize);
   }, [category, currentPage]);
+
 
   if (loading)
     return (
