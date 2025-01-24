@@ -15,7 +15,7 @@
   }
 
   .title {
-    font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif!important;
     text-transform: uppercase;
     font-size: 75px;
     font-weight: 600;
@@ -38,7 +38,7 @@
     margin: 0 auto;
     line-height: 1.5;
     font-weight: 300;
-    font-family: "Kelly Slab", sans-serif;
+    font-family: "Kelly Slab", sans-serif!important;
     color: #bbbbbb;
     padding: 0px 16px;
   }
@@ -50,7 +50,7 @@
     .title {
       font-size: 40px;
       padding-top: 40px;
-
+      text-shadow: 3px 2px 0px rgba(128, 0, 32, 0.7); // Red-like shadow with blur
     }
     .description {
       font-size: 14px;

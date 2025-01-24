@@ -17,6 +17,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const truncateDescription = (description: string, maxLength: number) => {
+    if (description.length > maxLength) {
+      return description.slice(0, maxLength) + "..."; // Truncate and append ellipsis
+    }
+    return description;
+  };
+
   const fetchProducts = async () => {
     try {
       setLoading(true);
@@ -45,7 +52,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   if (loading)
     return (
       <div className={styles.detailsContainer}>
-          <SkeletonLoader paragraph={{rows:15}} className={styles.skelotonContainer}classNameItem={styles.skelotonContainerItem}/>
+        <SkeletonLoader
+          paragraph={{ rows: 15 }}
+          className={styles.skelotonContainer}
+          classNameItem={styles.skelotonContainerItem}
+        />
       </div>
     );
   if (error) return <p>Error: {error}</p>;
@@ -97,7 +108,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
                   </span>
                   <span className={styles.price}>${item.price}</span>
                 </div>
-                <p>{item.description}</p>
+                <p>{truncateDescription(item.description, 100)}</p>
               </div>
             ))}
           </div>
