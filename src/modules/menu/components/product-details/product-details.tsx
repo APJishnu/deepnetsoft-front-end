@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./product-details.module.scss";
 import Icons from "@/themes/images/icons/icons";
 import { Product } from "@/interfaces/menu-interfaces/types";
-import { Empty, message } from "antd";
+import { Empty, message} from "antd";
 import UseProductServices from "../../services/menu-services";
 import SkeletonLoader from "@/themes/components/skeleton-loader/skeleton-loader";
+import ButtonComponent from "@/themes/components/button/button";
 
 interface ProductDetailsProps {
   category: "Food" | "Drinks" | "Brunch";
@@ -16,6 +17,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const [hasMore, setHasMore] = useState(false);
+  const [pageSize] = useState(6); // Page size (6 items per page)
 
   const truncateDescription = (description: string, maxLength: number) => {
     if (description.length > maxLength) {
@@ -24,19 +28,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
     return description;
   };
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (page: number, pageSize: number) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Call the service to fetch product details
-      const response = await UseProductServices().fetchProductDetails(category);
+      // Call the service to fetch product details with pagination
+      const response = await UseProductServices().fetchProductDetails(
+        category,
+        page,
+        pageSize
+      );
 
       if (!response.status) {
         throw new Error(response.message || "Failed to fetch products.");
       }
 
       setProducts(response.data || []);
+      setHasMore(response.hasMore);
     } catch (err: any) {
       setError(err.message || "An error occurred while fetching products.");
       message.error(err.message || "Failed to fetch products."); // Display Ant Design error message
@@ -46,8 +55,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, [category]);
+    fetchProducts(currentPage, pageSize);
+  }, [category, currentPage]);
 
   if (loading)
     return (
@@ -60,12 +69,17 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
       </div>
     );
 
-  if (error) return  <div className={styles.noDataContainer}>Error: {error}</div>;
+  if (error)
+    return <div className={styles.noDataContainer}>Error: {error}</div>;
 
-  if (products.length == 0) {
+  if (products.length === 0) {
     return (
       <div className={styles.noDataContainer}>
-        <Empty   description={<span style={{ color: '#fff' }}>No products available</span>}  />
+        <Empty
+          description={
+            <span style={{ color: "#fff" }}>No products available</span>
+          }
+        />
       </div>
     );
   }
@@ -112,7 +126,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
                   <span className={styles.name}>
                     <span className={styles.spanName}>{item.name}</span>
                     <span className={styles.dots}>
-                      ........................................................................................................................................................................
+                      {Array.from({ length: 250 }, (_, index) => (
+                        <span key={index}>.</span> // Creates individual dot
+                      ))}
                     </span>
                   </span>
                   <span className={styles.price}>${item.price}</span>
@@ -121,6 +137,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
               </div>
             ))}
           </div>
+          {hasMore && (
+            <div className={styles.seeMoreButtonContainer}>
+              <ButtonComponent
+                text="See More"
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+                className={styles.button}
+              />
+               
+            </div>
+          )}
         </div>
       </div>
     </div>

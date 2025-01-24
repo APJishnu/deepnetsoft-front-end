@@ -184,6 +184,24 @@
     font-family: "Kelly Slab", sans-serif;
     color: #bbbbbb;
   }
+  
+.button {
+  width: 114px;
+  height: 49px;
+  border-radius: 0px !important;
+  border: 0.5px solid #0796ef;
+  color: #ffffff;
+  background-color:transparent;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; // Smooth transition
+
+  &:hover {
+    background-color: #0796ef !important;
+    color: #ffffff !important;
+  }
+}
 }
 
 @media (max-width: 1024px) {
@@ -280,3 +298,5 @@
   align-items: center;
   position: relative;
 }
+
+

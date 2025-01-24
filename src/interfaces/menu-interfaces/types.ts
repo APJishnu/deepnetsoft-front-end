@@ -9,5 +9,6 @@ export interface Product {
 export interface ProductDetailsResponse{
     status:boolean;
     message:string;
-    data:Product[] | []
+    data:Product[] | [];
+    hasMore:boolean
   }
