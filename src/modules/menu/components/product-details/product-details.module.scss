@@ -258,4 +258,25 @@
     
     
   }
+
+}
+.errorMessage{
+  color: #fff;
+  text-align: center;
+  background-image: url("/product-details/bg.svg"); // Add your background image here
+  background-size: cover;
+  background-position: center;
+}
+
+.noDataContainer{
+  color: #fff;
+  text-align: center;
+  min-height: 450px;
+  background-image: url("/product-details/bg.svg"); // Add your background image here
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }

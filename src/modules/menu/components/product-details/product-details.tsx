@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./product-details.module.scss";
 import Icons from "@/themes/images/icons/icons";
 import { Product } from "@/interfaces/menu-interfaces/types";
-import { message } from "antd";
+import { Empty, message } from "antd";
 import UseProductServices from "../../services/menu-services";
 import SkeletonLoader from "@/themes/components/skeleton-loader/skeleton-loader";
 
@@ -59,7 +59,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
         />
       </div>
     );
-  if (error) return <p>Error: {error}</p>;
+
+  if (error) return  <div className={styles.noDataContainer}>Error: {error}</div>;
+
+  if (products.length == 0) {
+    return (
+      <div className={styles.noDataContainer}>
+        <Empty   description={<span style={{ color: '#fff' }}>No products available</span>}  />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.detailsContainer}>
@@ -72,8 +81,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
           <div className={styles.topLeftImage}>
             {products[0] && (
               <img
-                src={products[0].image}
-                alt={products[0].name}
+                src={products[0]?.image}
+                alt={products[0]?.name}
                 className={styles.Image}
               />
             )}
@@ -81,8 +90,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
           <div className={styles.bottomRightImage}>
             {products[1] && (
               <img
-                src={products[1].image}
-                alt={products[1].name}
+                src={products[1]?.image}
+                alt={products[1]?.name}
                 className={styles.Image}
               />
             )}
@@ -97,7 +106,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
             </span>
           </div>
           <div className={styles.itemsGrid}>
-            {products.map((item, index) => (
+            {products?.map((item, index) => (
               <div key={index} className={`${styles.itemContainer}`}>
                 <div className={styles.productName}>
                   <span className={styles.name}>
