@@ -10,6 +10,8 @@
   align-items: flex-start;
   position: relative;
 
+  
+
   .secondLayer {
     position: absolute;
     top: 0;
@@ -300,3 +302,14 @@
 }
 
 
+// .popupModal{
+//   :global(.ant-modal-content){
+//   background-image: url("/product-details/bg.svg")!important;
+//   background-size: cover!important;
+//  background-position: center;
+//  background-color: #bbbbbb;
+//  .ant-modal-body{
+//   color: #ffffff!important;
+//  }
+// }
+// }

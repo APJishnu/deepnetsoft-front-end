@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./product-details.module.scss";
 import Icons from "@/themes/images/icons/icons";
 import { Product } from "@/interfaces/menu-interfaces/types";
-import { Empty, message} from "antd";
+import { Empty, message, Modal} from "antd";
 import UseProductServices from "../../services/menu-services";
 import SkeletonLoader from "@/themes/components/skeleton-loader/skeleton-loader";
 import ButtonComponent from "@/themes/components/button/button";
@@ -20,6 +20,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const [hasMore, setHasMore] = useState(false);
   const [pageSize] = useState(6); // Page size (6 items per page)
+
+  const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // Selected product state
 
   const truncateDescription = (description: string, maxLength: number) => {
     if (description.length > maxLength) {
@@ -84,6 +87,23 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
     );
   }
 
+   // Handle showing modal on product click
+   const showModal = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    message.success(`Reservation for ${selectedProduct?.name} successful!`);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    message.info("Reservation was not made.");
+  };
+
+
   return (
     <div className={styles.detailsContainer}>
       <div className={styles.secondLayer}>
@@ -120,8 +140,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
             </span>
           </div>
           <div className={styles.itemsGrid}>
-            {products?.map((item, index) => (
-              <div key={index} className={`${styles.itemContainer}`}>
+          {products?.map((item, index) => (
+              <div key={index} className={styles.itemContainer} onClick={() => showModal(item)}>
                 <div className={styles.productName}>
                   <span className={styles.name}>
                     <span className={styles.spanName}>{item.name}</span>
@@ -149,6 +169,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ category }) => {
           )}
         </div>
       </div>
+
+      {/* Modal for reservation */}
+      <Modal
+        title="Make Reservation"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[
+          <ButtonComponent key="cancel" text="Cancel" onClick={handleCancel} />,
+          <ButtonComponent key="ok" text="OK" onClick={handleOk} />
+        ]}
+        className={styles.popupModal}
+      >
+        <p>Do you want to make a reservation for <strong>{selectedProduct?.name}</strong>?</p>
+      </Modal>
     </div>
   );
 };
